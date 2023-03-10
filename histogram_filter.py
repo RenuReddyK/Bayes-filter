@@ -10,7 +10,7 @@ class HistogramFilter(object):
         T = np.identity(M*N) * 0.1
         action = (-action[1], action[0])
        
-        if action == (10,):             #right
+        if action == (0,1):             #right
             for i in range(M*N):
                 next_state = i+1
                 if i % N == N-1:
