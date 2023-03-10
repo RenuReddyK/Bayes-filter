@@ -58,8 +58,7 @@ class HistogramFilter(object):
         :param observation: The observation from the color sensor. [0 or 1].
         :return: The posterior distribution.
         '''
-
-        ### Your Algorithm goes Below.
+        
         M = cmap.shape[0]
         N = cmap.shape[1]
 
@@ -71,22 +70,14 @@ class HistogramFilter(object):
                 if cmap.flatten()[i] == j:
                     M_xy[i,j] = 0.9
                     M_xy[i,1-j] = 0.1
-        #print(M_xy)
 
         alpha_in = belief.flatten()
-        # print(alpha_in.shape)
-        # print(T.shape)
-        # print(M_xy.shape)
-        # print(M_xy[:,observation].shape)
-        # print(observation.shape)
 
         alpha_kT = np.multiply(M_xy[:,observation], np.dot(alpha_in.T, T))
        
-        # print(alpha_kT.shape)
         posterior = alpha_kT.T / np.sum(alpha_kT.T)
         posterior = posterior.reshape(M, N)
 
-        # print(posterior.shape)
         return posterior
 
         
